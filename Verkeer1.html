@@ -1,0 +1,224 @@
+<!DOCTYPE html
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Verkeer 1</title>
+</head>
+<body background="images/crossroad.png" class="Crossroad">
+
+<form>
+<input type="button" value="start" onclick="starten()">
+<input type="button" value="stop" onclick="stop()">
+<input type="button" value="opnieuw" onclick="opnieuw()">
+<img id="auto" src="images/a_blue.png" width="40px" height="80px">
+    <img id="auto1" src="images/imageedit_1_3734540849.png" width="40px" height="80px">
+        <img id="auto2" src="images/a_red.png" width="80px" height="40px">
+            <img id="auto3" src="images/scooter.png" width="80px" height="80px">
+    <input type="button" value="aanzetten" onclick="aanzetten()">
+    <input type="button" value="knipperen" onclick="knipperen()">
+    <input type="button" value="uitzitten" onclick="uitzetten()">
+    <img id="stoplicht" src="images/t_off.png" width="40px" height="50px">
+    <img id="stoplicht1" src="images/t_off1.png" width="40px" height="50px">
+    <img id="stoplicht2" src="images/t_off2.png" width="50px" height="50px">
+    <img id="stoplicht3" src="images/t_off3.png" width="50" height="50px">
+
+
+</form>
+
+
+
+
+<script>
+    var rijden;
+    var auto = document.getElementById('auto');
+    var auto1 = document.getElementById('auto1');
+    var auto2 = document.getElementById('auto2');
+    var auto3 = document.getElementById('auto3');
+
+
+    auto.style.position = 'absolute';
+    auto.style.left = '850px';
+    auto.style.top = '650px';
+    auto1.style.position = 'absolute';
+    auto1.style.left = '750px';
+    auto1.style.top = '50px';
+    auto2.style.position = 'absolute';
+    auto2.style.left = '600px';
+    auto2.style.top = '400px';
+    auto3.style.top = '275px';
+    auto3.style.position = 'absolute';
+    auto3.style.left = '1000px';
+    var werken;
+    var buitenwerking;
+    var stoplicht = document.getElementById('stoplicht');
+    var stoplicht1 = document.getElementById('stoplicht1');
+    var stoplicht2 = document.getElementById('stoplicht2');
+    var stoplicht3 = document.getElementById('stoplicht3');
+    stoplicht.style.position = 'absolute';
+    stoplicht.style.left = '930px';
+    stoplicht.style.top = '470px';
+    stoplicht1.style.position = 'absolute';
+    stoplicht1.style.left = '680px';
+    stoplicht1.style.top = '200px';
+    stoplicht2.style.position = 'absolute';
+    stoplicht2.style.left = '660px';
+    stoplicht2.style.top = '460px';
+    stoplicht3.style.position = 'absolute';
+    stoplicht3.style.left = '950px';
+    stoplicht3.style.top = '215px';
+
+    function aanzetten () {
+        aanzetten1();
+        aanzetten2();
+    }
+    function aanzetten1 (){
+        clearTimeout(buitenwerking);
+        maakRood();
+        werken = setTimeout(maakGroen, 6000);
+        werken = setTimeout(maakOranje, 10000);
+        werken = setTimeout(maakRood, 12000);
+
+
+    }
+    function aanzetten2 (){
+        clearTimeout(buitenwerking);
+        maakGroen1();
+
+        werken = setTimeout(maakOranje1, 6000);
+        werken = setTimeout(maakRood1, 8000);
+        werken = setTimeout(aanzetten2, 14000);
+    }
+
+
+    function knipperen(){
+        clearTimeout(werken);
+        maakOranje();
+        maakOranje1();
+        buitenwerking = setTimeout(zetUit, 500 );
+        buitenwerking = setTimeout(knipperen, 1000);
+    }
+
+    function uitzetten(){
+        clearTimeout(buitenwerking);
+        clearTimeout(werken);
+    }
+
+    function maakRood(){
+        stoplicht.src = "images/t_red.png";
+        stoplicht1.src = "images/t_red.png";
+
+        bb = true;
+    }
+
+    function maakGroen(){
+            stoplicht.src = "images/t_green.png";
+        stoplicht1.src = "images/t_green.png";
+
+        bb = false;
+    }
+
+    function maakOranje(){
+        stoplicht.src = "images/t_orange.png";
+        stoplicht1.src= "images/t_orange.png";
+
+        bb = false;
+    }
+
+    function maakRood1(){
+
+        stoplicht2.src = "images/t_red.png";
+        stoplicht3.src = "images/t_red.png";
+        lr = true;
+    }
+
+    function maakGroen1(){
+
+        stoplicht2.src = "images/t_green.png";
+        stoplicht3.src = "images/t_green.png";
+        lr = false;
+    }
+    function maakOranje1(){
+        stoplicht2.src = "images/t_orange.png";
+        stoplicht3.src= "images/t_orange.png";
+       lr = false;
+    }
+
+    function zetUit() {
+        stoplicht.src = "images/t_off.png";
+        stoplicht1.src = "images/t_off.png";
+        stoplicht2.src = "images/t_off.png";
+        stoplicht3.src = "images/t_off.png";
+
+    }
+    function starten() {
+        rijden = setTimeout(starten, 10);
+        y_auto = parseInt(auto.style.top);
+        y_auto1 = parseInt(auto1.style.top);
+        y_auto2 = parseInt(auto2.style.left);
+        y_auto3 = parseInt(auto3.style.left);
+        if (parseInt(auto.style.top) < -80) {
+            auto.style.top = '900px';
+        }
+
+        if (parseInt(auto1.style.top) > 900) {
+            auto1.style.top = '50px';
+        }
+        if (parseInt(auto2.style.left) > 1500) {
+            auto2.style.left = '50px';
+        }
+        if (parseInt(auto3.style.left) < 100) {
+            auto3.style.left = '1250px';
+        }
+        if (lr && y_auto3 == 1000) {
+            snelheid3 = 0;
+        }
+        else {
+            snelheid3 = 5;
+        }
+        if (bb && y_auto1 == 100) {
+            snelheid1 = 0;
+        }
+        else {
+            snelheid1 = 5;
+        }
+        if (lr && y_auto2 == 550) {
+            snelheid2 = 0;
+        }
+        else {
+            snelheid2 = 5;
+        }
+        if (bb && y_auto == 550) {
+            snelheid = 0;
+        }
+        else {
+            snelheid = 5;
+        }
+        auto.style.top = parseInt(auto.style.top) - snelheid + 'px';
+        auto1.style.top = parseInt(auto1.style.top) + snelheid1 + 'px';
+        auto2.style.left = parseInt(auto2.style.left) + snelheid2 + 'px';
+        auto3.style.left = parseInt(auto3.style.left) - snelheid3 + 'px';
+   }
+
+
+
+
+    function stop() {
+            clearTimeout(rijden);
+        }
+
+        function opnieuw() {
+            clearTimeout(rijden);
+            auto.style.top = '650px';
+            auto1.style.top = '50px';
+        }
+
+
+
+</script>
+<style>
+    div.Crossroad {
+        background: no-repeat;
+    }
+</style>
+</body>
+</html
